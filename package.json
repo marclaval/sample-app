@@ -1,0 +1,64 @@
+{
+  "name": "sample-app",
+  "version": "1.0.0-alpha.0",
+  "description": "Angular 2 sample app",
+  "keywords": "Angular 2",
+  "author": "Marc Laval",
+  "scripts": {
+    "compile": "rm -rf tmp/ && ngc -p . && tsc -p .",
+    "serve": "http-server ./dist",
+    "demo.aot": "COMPILATION=aot webpack-dev-server --port 9090 --config webpack.config.js --hot --inline --progress",
+    "demo.jit": "COMPILATION=jit webpack-dev-server --port 9090 --config webpack.config.js --hot --inline --progress",
+    "webpack.aot": "rm -rf dist/ && MODE=build COMPILATION=aot webpack --config webpack.config.js --progress --profile --bail",
+    "webpack.jit": "rm -rf dist/ && MODE=build COMPILATION=jit webpack --config webpack.config.js --progress --profile --bail",
+    "rollup.bundle.aot": "rm -rf dist/ && rollup tmp/src/main.aot.js -c --output dist/app.es2015.js",
+    "rollup.bundle.jit": "rm -rf dist/ && rollup tmp/src/main.jit.js -c --output dist/app.es2015.js",
+    "es5": "tsc --target es5 --allowJs dist/app.es2015.js --out dist/app.js",
+    "minify": "uglifyjs dist/app.js --screw-ie8 --compress --mangle --output dist/app.min.js",
+    "rollup.aot": "npm run rollup.bundle.aot && npm run es5 && npm run minify",
+    "rollup.jit": "npm run rollup.bundle.jit && npm run es5 && npm run minify"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaval/sample-app.git"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://raw.githubusercontent.com/ng-bootstrap/ng-bootstrap/master/LICENSE"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaval/sample-app/issues"
+  },
+  "homepage": "https://github.com/mlaval/sample-app#readme",
+  "dependencies": {
+    "@angular/core": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/common": "2.0.0",
+    "@angular/forms": "2.0.0",
+    "@angular/http": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/platform-server": "2.0.0",
+    "@angular/router": "3.0.0",
+    "classlist-polyfill": "^1.0.3",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "0.6.21"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "0.6.2",
+    "awesome-typescript-loader": "^2.2.4",
+    "html-webpack-plugin": "^2.22.0",
+    "http-server": "^0.9.0",
+    "raw-loader": "^0.5.1",
+    "rollup": "^0.35.11",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rxjs-es": "5.0.0-beta.12",
+    "typescript": "2.0.2",
+    "uglify-js": "^2.7.3",
+    "webpack": "^2.1.0-beta.22",
+    "webpack-dev-server": "^2.1.0-beta.4"
+  }
+}
